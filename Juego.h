@@ -90,3 +90,130 @@ void mostrarEstadisticas()
 
     archivo.close();
 }
+
+void jugar(Jugador *cabeza)
+{
+    if (cabeza == nullptr)
+    {
+        cout << "No hay jugadores para iniciar una partida" << endl;
+        return;
+    }
+
+    //reiniciamos el estado de los jugadores para iniciar la partida
+    Jugador *aux = cabeza;
+    do
+    {
+        aux->eliminar = false;
+        aux = aux->sig;
+    } while (aux != cabeza);
+
+    bool hayGanador = false;
+
+    while (!hayGanador)
+    {
+        bool hayPiedra = false, hayPapel = false, hayTijera = false;
+
+        cout << "\nResumen de la ronda:\n";
+
+       //asignamos jugadas a los jugadores mientras no hayan perdido anteriormente
+        aux = cabeza;
+        do
+        {
+            if (!aux->eliminar)
+            {
+                aux->jugada = rand() % 3;
+
+                cout << aux->Nombre << " obtuvo: "
+                     << Movimientos(aux->jugada) << endl;
+
+                if (aux->jugada == 0) hayPiedra = true;
+                if (aux->jugada == 1) hayPapel = true;
+                if (aux->jugada == 2) hayTijera = true;
+            }
+
+            aux = aux->sig;
+
+        } while (aux != cabeza);
+
+        cout << "Resultado de la partida: " << endl;
+
+        //creamos un primer if donde ponemos el primer caso donde todos si hay tres jugadores
+        //puede haber un empate tecnico ya que todos se eliminan entre todos
+        if (hayPiedra && hayPapel && hayTijera)
+        {
+            cout << "Empate tecnico, se repite la ronda.\n";
+            continue;
+        }
+
+        //creamos un segundo if donde creamos un segundo caso en el cual todos los jugadores escojen
+        //la misma jugada en la partida probocando un empate entre los n jugadores
+        if ((hayPiedra && !hayPapel && !hayTijera) ||
+            (!hayPiedra && hayPapel && !hayTijera) ||
+            (!hayPiedra && !hayPapel && hayTijera))
+        {
+            cout << "Todos eligieron lo mismo, se repite la ronda.\n";
+            continue;
+        }
+
+        int accionGanadora;
+
+        if (hayPiedra && hayTijera)
+            accionGanadora = 0;
+        else if (hayPapel && hayPiedra)
+            accionGanadora = 1;
+        else
+            accionGanadora = 2;
+
+        int EnPartida = 0;
+
+        // eliminamos a los jugadores que van perdiendo en la partida para irlos saltando 
+        //para que el programa siga ejecutandose sin contar a los jugadores que perdieron
+        aux = cabeza;
+        do
+        {
+            if (!aux->eliminar)
+            {
+                if (aux->jugada != accionGanadora)
+                {
+                    cout << "Eliminado: " << aux->Nombre << endl;
+                    aux->eliminar = true;
+                }
+                else
+                {
+                    EnPartida++;
+                }
+            }
+
+            aux = aux->sig;
+
+        } while (aux != cabeza);
+
+       //Si EnPartida solo queda un jugador se le declara como ganador del set del juego
+        if (EnPartida == 1)
+        {
+            aux = cabeza;
+            do
+            {
+                if (!aux->eliminar)
+                {
+                    cout << "\nEl ganador es: " << aux->Nombre << endl;
+                    hayGanador = true;
+                    break;
+                }
+
+                aux = aux->sig;
+
+            } while (aux != cabeza);
+        }
+        else
+        //Siendo lo contrario seguimos jugando hasta que se cumpla el primer if de la funcion
+        {
+            cout << "Quedan " << EnPartida
+                 << " jugadores, sigue la partida..." << endl;
+        }
+    }
+
+    //Llamamos y Guardamos los datos en el archivo .txt
+    guardarEstadisticas(cabeza);
+    mostrarEstadisticas();
+}
