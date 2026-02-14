@@ -26,7 +26,7 @@ string Movimientos(int accion)
     case 2:
         return "Tijera";
     default:
-        return " ";
+        return " "; // el default nos permite que la funcion no quede sin valor asignado
     }
 } 
 
@@ -51,10 +51,12 @@ void guardarEstadisticas(Jugador *cabeza)
 
     do
     {
+        //guardamos el nombre junto al movimiento que le toco al jugador
         archivo << "Jugador: " << aux->Nombre << endl;
         archivo << "Jugada: " << Movimientos(aux->jugada) << endl;
 
         if (aux->eliminar)
+        //le asiganmos un estado a los jugadores a la hora de guardarlos en el archivo .txt
             archivo << "Estado: Eliminado" << endl;
         else
             archivo << "Estado: Ganador" << endl;
@@ -113,7 +115,7 @@ void jugar(Jugador *cabeza)
     {
         bool hayPiedra = false, hayPapel = false, hayTijera = false;
 
-        cout << "\nResumen de la ronda:\n";
+        cout << " Resumen de la ronda: " << endl;
 
        //asignamos jugadas a los jugadores mientras no hayan perdido anteriormente
         aux = cabeza;
@@ -123,8 +125,7 @@ void jugar(Jugador *cabeza)
             {
                 aux->jugada = rand() % 3;
 
-                cout << aux->Nombre << " obtuvo: "
-                     << Movimientos(aux->jugada) << endl;
+                cout << aux->Nombre << " obtuvo: " << Movimientos(aux->jugada) << endl;
 
                 if (aux->jugada == 0) hayPiedra = true;
                 if (aux->jugada == 1) hayPapel = true;
@@ -141,7 +142,7 @@ void jugar(Jugador *cabeza)
         //puede haber un empate tecnico ya que todos se eliminan entre todos
         if (hayPiedra && hayPapel && hayTijera)
         {
-            cout << "Empate tecnico, se repite la ronda.\n";
+            cout << "Empate tecnico, se repite la ronda. " << endl;
             continue;
         }
 
@@ -151,7 +152,7 @@ void jugar(Jugador *cabeza)
             (!hayPiedra && hayPapel && !hayTijera) ||
             (!hayPiedra && !hayPapel && hayTijera))
         {
-            cout << "Todos eligieron lo mismo, se repite la ronda.\n";
+            cout << "Todos eligieron lo mismo, se repite la ronda. " << endl;
             continue;
         }
 
@@ -181,6 +182,7 @@ void jugar(Jugador *cabeza)
                 else
                 {
                     EnPartida++;
+                    //vamos sumando la cantidad de jugadores que aun no han sido eliminados
                 }
             }
 
@@ -196,7 +198,7 @@ void jugar(Jugador *cabeza)
             {
                 if (!aux->eliminar)
                 {
-                    cout << "\nEl ganador es: " << aux->Nombre << endl;
+                    cout << " El ganador es: " << aux->Nombre << endl;
                     hayGanador = true;
                     break;
                 }
