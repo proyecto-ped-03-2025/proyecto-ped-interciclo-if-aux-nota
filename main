@@ -1,0 +1,111 @@
+
+
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Jugador{
+    string nombre;
+    int id;
+    Jugador* siguiente;
+};
+
+Jugador* ultimo = NULL;
+
+
+void insertarJugador(string nombre, int id){
+
+  
+    if(ultimo != NULL){
+        Jugador* aux = ultimo->siguiente;
+        do{
+            if(aux->id == id){
+                cout << "El ID ya esta registrado.\n";
+                return;
+            }
+            aux = aux->siguiente;
+        }while(aux != ultimo->siguiente);
+    }
+
+    Jugador* nuevo = new Jugador();
+    nuevo->nombre = nombre;
+    nuevo->id = id;
+
+    if(ultimo == NULL){
+        ultimo = nuevo;
+        ultimo->siguiente = ultimo;
+    }
+    else{
+        nuevo->siguiente = ultimo->siguiente;
+        ultimo->siguiente = nuevo;
+        ultimo = nuevo;
+    }
+
+    cout << "Jugador inscrito correctamente.\n";
+}
+
+void mostrarJugadores(){
+
+    if(ultimo == NULL){
+        cout << "No hay jugadores inscritos.\n";
+        return;
+    }
+
+    Jugador* aux = ultimo->siguiente;
+
+    cout << "\n=== LISTA DE PARTICIPANTES ===\n";
+    do{
+        cout << "ID: " << aux->id 
+             << " | Nombre: " << aux->nombre << endl;
+        aux = aux->siguiente;
+    }while(aux != ultimo->siguiente);
+}
+
+
+void menu(){
+
+    int opcion;
+
+    do{
+        cout << "\n===== PIEDRA PAPEL O TIJERA =====\n";
+        cout << "1. Inscribir participante\n";
+        cout << "2. Mostrar participantes\n";
+        cout << "3. Salir\n";
+        cout << "Opcion: ";
+        cin >> opcion;
+        switch(opcion){
+
+        case 1:{
+            string nombre;
+            int id;
+
+            cout << "Nombre: ";
+            cin >> ws;
+            getline(cin, nombre);
+            cout << "ID: ";
+            cin >> id;
+
+            insertarJugador(nombre, id);
+            break;
+        }
+
+        case 2:
+            mostrarJugadores();
+            break;
+          case 3:
+            cout << "Saliendo...\n";
+            break;
+
+        default:
+            cout << "Opcion invalida.\n";
+        }
+
+    }while(opcion != 3);
+          }
+
+int main(){
+    menu();
+    return 0;
+}
