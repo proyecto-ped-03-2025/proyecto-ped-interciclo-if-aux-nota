@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Jugador{
+    string nombre;
+    int id;
+    Jugador* siguiente;
+};
+
+Jugador* ultimo = NULL;
+void insertarJugador(string nombre, int id){
+
+    
+    if(ultimo != NULL){
+        Jugador* aux = ultimo->siguiente;
+        do{
+            if(aux->id == id){
+                cout << "El ID ya esta registrado.\n";
+                return;
+            }
+            aux = aux->siguiente;
+        }while(aux != ultimo->siguiente);
+    }
