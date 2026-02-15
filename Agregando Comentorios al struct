@@ -1,0 +1,9 @@
+struct Jugador
+{
+    string Nombre;
+    string Carnet;
+    int jugada;
+    bool eliminar;
+    int puntos;   // ← AGREGA ESTA LÍNEA
+    Jugador *sig;
+};
