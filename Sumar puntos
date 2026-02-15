@@ -1,0 +1,4 @@
+cout << " El ganador es: " << aux->Nombre << endl;
+aux->puntos++;
+hayGanador = true;
+break;
