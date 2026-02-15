@@ -1,0 +1,20 @@
+void mostrarEstadisticas()
+{
+    ifstream archivo("estadisticas.txt");
+    string linea;
+
+    if (!archivo.is_open())
+    {
+        cout << "No hay estadisticas guardadas." << endl;
+        return;
+    }
+
+    cout << "\n===== HISTORIAL DE ESTADISTICAS =====" << endl;
+
+    while (getline(archivo, linea))
+    {
+        cout << linea << endl;
+    }
+
+    archivo.close();
+}
