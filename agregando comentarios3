@@ -1,0 +1,21 @@
+void mostrarPuntuaciones(Jugador *cabeza)
+{
+    // Si la lista está vacía no hacemos nada
+    if (cabeza == nullptr)
+        return;
+    cout << "\n===== PUNTUACIONES FINALES =====" << endl;
+
+    Jugador *aux = cabeza;
+
+    // Recorremos todos los jugadores hasta volver al inicio
+    do
+    {
+        // Mostramos el nombre del jugador y sus puntos acumulados
+        cout << "Jugador: " << aux->Nombre
+             << " | Puntos: " << aux->puntos << endl;
+
+        // Avanzamos al siguiente jugador
+        aux = aux->sig;
+
+    } while (aux != cabeza);  // Se detiene cuando vuelve al primero
+}
