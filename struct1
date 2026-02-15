@@ -1,0 +1,7 @@
+#include<iostream>
+using namespace std;
+struct Jugador{
+    string nombre;
+    int id;
+    Jugador* siguiente;
+};
