@@ -12,6 +12,7 @@ struct Jugador
     string Carnet;
     int jugada;
     bool eliminar;
+    int puntos;
     Jugador *sig;
 };
 
@@ -29,6 +30,23 @@ string Movimientos(int accion)
         return " "; // el default nos permite que la funcion no quede sin valor asignado
     }
 } 
+
+void mostrarPuntuaciones(Jugador *cabeza)
+{
+    if (cabeza == nullptr)
+        return;
+
+    cout << "\n===== PUNTUACIONES FINALES =====" << endl;
+
+    Jugador *aux = cabeza;
+    do
+    {
+        cout << "Jugador: " << aux->Nombre
+             << " | Puntos: " << aux->puntos << endl;
+
+        aux = aux->sig;
+    } while (aux != cabeza);
+}
 
 void guardarEstadisticas(Jugador *cabeza)
 {
@@ -199,6 +217,7 @@ void jugar(Jugador *cabeza)
                 if (!aux->eliminar)
                 {
                     cout << " El ganador es: " << aux->Nombre << endl;
+                    aux->puntos++;
                     hayGanador = true;
                     break;
                 }
@@ -216,6 +235,7 @@ void jugar(Jugador *cabeza)
     }
 
     //Llamamos y Guardamos los datos en el archivo .txt
+    mostrarPuntuaciones(cabeza);
     guardarEstadisticas(cabeza);
     mostrarEstadisticas();
 }
