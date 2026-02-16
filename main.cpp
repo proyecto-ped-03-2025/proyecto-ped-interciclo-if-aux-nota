@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Juego.h"
+#include "creditosytuto.h"
 
 int main()
 {
@@ -10,12 +10,13 @@ int main()
     string nombre;
     do
     {
-        cout << "--- Prototipo Juego ---"<< endl;
+        cout << "===== Menu ====="<< endl;
         cout << "1. Introduccir jugadores a la partida"<< endl;
         cout << "2. Mostrar Tutorial"<< endl;
         cout << "3. Programadores del juego"<< endl;
-        cout << "4. Empezar juego"<<endl;
-        cout << "5. Salir " << endl;
+        cout << "4. Mostrar puntuaciones" << endl;
+        cout << "5. Empezar juego"<<endl;
+        cout << "6. Salir " << endl;
         cout << "Opcion: ";
         cin >> op;
         cout << endl;
@@ -30,18 +31,21 @@ int main()
             insertarJugador(tail, carnet, nombre);
             break;
         case 2:
-            tutorial(tail); // llamamos al archivo .h "Juegopt1"
+            tutorial(tail); // llamamos al archivo .h "Juego"
             break;
         case 3:
-            Creditos(tail); // llamamos al archivo .h "Juegopt1"
+            Creditos(tail); // llamamos al archivo .h "Juego"
             break;
         case 4:
+            mostrarPuntuaciones(tail);
+            break;
+        case 5:
 
             int op2;
             do
             {
 
-                cout << "--- Prototipo SubMenu ---"<< endl;
+                cout << "===== Menu de Juego ====="<< endl;
                 cout << "1. Empezar la partida"<< endl;
                 cout << "2. Mostrar los jugadores de la partida" << endl;
                 cout << "3. Volver al menu principal " << endl;
@@ -59,6 +63,6 @@ int main()
             } while (op2 != 3);
             break;
         }
-    } while (op != 5);
+    } while (op != 6);
     return 0;
 }

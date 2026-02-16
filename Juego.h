@@ -76,7 +76,11 @@ string Movimientos(int accion)
 void mostrarPuntuaciones(Jugador *cabeza)
 {
     if (cabeza == nullptr)
+    {
+        cout << endl;
+        cout << "No hay jugadores puntuando" << endl;
         return;
+    }
 
     cout << "\n===== PUNTUACIONES FINALES =====" << endl;
 
