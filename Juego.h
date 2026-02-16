@@ -16,6 +16,48 @@ struct Jugador
     Jugador *sig;
 };
 
+void insertarJugador( Jugador*&tail, string carnet, string nombre)
+{
+    Jugador *nuevo = new Jugador();
+    nuevo->Nombre = nombre;
+    nuevo->Carnet = carnet;
+    if (tail == nullptr)
+    {
+        tail = nuevo;
+        nuevo->sig = nuevo;
+    }
+    else
+    {
+        nuevo->sig = tail->sig;
+        tail->sig = nuevo;
+        tail = nuevo; // nuevo se vuelve el último
+    }
+}
+
+void mostrar(Jugador *tail)
+{
+    if (tail == nullptr)
+    {
+        cout << endl;
+        cout << "No hay jugadores en la partida" << endl;
+        return;
+    }
+
+    Jugador *head = tail->sig;
+    Jugador *aux = head;
+    
+        cout << endl;
+        cout << "--LISTA DE JUGADORES--" << endl;
+    do
+    {
+        cout << "Nombre: " << aux->Nombre << endl;
+        cout << "Carnet: " << aux->Carnet << endl;
+        cout << "-----------------------" << endl;
+        aux = aux->sig;
+    } while (aux != head);
+    cout << endl;
+}
+
 string Movimientos(int accion)
 { //creamos un switch con las opciones del jugador
     switch (accion)
@@ -34,7 +76,11 @@ string Movimientos(int accion)
 void mostrarPuntuaciones(Jugador *cabeza)
 {
     if (cabeza == nullptr)
+    {
+        cout << endl;
+        cout << "No hay jugadores puntuando" << endl;
         return;
+    }
 
     cout << "\n===== PUNTUACIONES FINALES =====" << endl;
 
