@@ -14,7 +14,7 @@ int main()
         cout << "1. Introduccir jugadores a la partida"<< endl;
         cout << "2. Mostrar Tutorial"<< endl;
         cout << "3. Programadores del juego"<< endl;
-        cout << "4. Mostrar puntuaciones" << endl;
+        cout << "4. Mostrar ultimas partidas" << endl;
         cout << "5. Empezar juego"<<endl;
         cout << "6. Salir " << endl;
         cout << "Opcion: ";
@@ -37,7 +37,7 @@ int main()
             Creditos(tail); // llamamos al archivo .h "Juego"
             break;
         case 4:
-            mostrarPuntuaciones(tail);
+            mostrarEstadisticas();
             break;
         case 5:
 
@@ -46,9 +46,10 @@ int main()
             {
 
                 cout << "===== Menu de Juego ====="<< endl;
-                cout << "1. Empezar la partida"<< endl;
-                cout << "2. Mostrar los jugadores de la partida" << endl;
-                cout << "3. Volver al menu principal " << endl;
+                cout << "1. Empezar la partida "<< endl;
+                cout << "2. Mostrar los jugadores de la partida " << endl;
+                cout << "3. Mostrar la puntuacion de los jugadores " << endl;
+                cout << "4. Volver al menu principal " << endl;
                 cin >> op2;
 
                 switch (op2)
@@ -59,8 +60,11 @@ int main()
                 case 2:
                     mostrar(tail);
                     break;
+                case 3:
+                    mostrarPuntuaciones(tail);
+                    break;
                 }
-            } while (op2 != 3);
+            } while (op2 != 4);
             break;
         }
     } while (op != 6);

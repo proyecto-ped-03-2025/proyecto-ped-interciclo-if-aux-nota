@@ -106,7 +106,7 @@ void guardarEstadisticas(Jugador *cabeza)
         return;
     }
 
-    archivo << "----- Nueva Partida -----" << endl;
+    archivo << "----- Partidas Jugadas -----" << endl;
 
     Jugador *aux = cabeza;
 
