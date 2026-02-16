@@ -87,11 +87,11 @@ void mostrarPuntuaciones(Jugador *cabeza)
     Jugador *aux = cabeza;
     do
     {
-        cout << "Jugador: " << aux->Nombre
-             << " | Puntos: " << aux->puntos << endl;
+        cout << "Jugador: " << aux->Nombre << " | Puntos: " << aux->puntos << endl;
 
         aux = aux->sig;
     } while (aux != cabeza);
+    cout << endl;
 }
 
 void guardarEstadisticas(Jugador *cabeza)
@@ -263,7 +263,7 @@ void jugar(Jugador *cabeza)
                 if (!aux->eliminar)
                 {
                     cout << " El ganador es: " << aux->Nombre << endl;
-                    aux->puntos++;
+                    aux->puntos++; //<- le vamos sumando un punto al jugadores
                     hayGanador = true;
                     break;
                 }
