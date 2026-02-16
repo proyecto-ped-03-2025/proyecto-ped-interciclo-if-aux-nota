@@ -24,9 +24,9 @@ int main()
         switch (op)
         {
         case 1:
-            cout << "Introduzca el nombre del juegador: " << endl;
+            cout << "Introduzca el nombre del jugador: " << endl;
             getline(cin >> ws, nombre);
-            cout << "Introduzca el carnet del juegador: " << endl;
+            cout << "Introduzca el carnet del jugador: " << endl;
             cin >> carnet;
             insertarJugador(tail, carnet, nombre);
             break;
