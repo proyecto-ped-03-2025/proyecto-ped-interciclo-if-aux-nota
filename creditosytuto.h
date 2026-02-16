@@ -38,7 +38,8 @@ void tutorial(Jugador *tail)
 void Creditos(Jugador *tail)
 {
     cout << endl;
-    cout << "ADRIAN EMANUEL ESCOBAR AVILES " << endl;
+    cout << " ADRIAN EMANUEL ESCOBAR AVILES " << endl;
     cout << " RODRIGO JOSE VILLEDA RODEZNO " << endl;
     cout << " MANUEL TOBAR GARCIA " << endl;
+    cout << endl;
 }
