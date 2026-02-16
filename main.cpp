@@ -1,5 +1,5 @@
 #include <iostream>
-#include "creditosytuto.h"
+#include "creditosytuto.h" //<- llamamos solo este archivo ya que contiene dentro los archivos del juego
 
 int main()
 {
@@ -31,10 +31,10 @@ int main()
             insertarJugador(tail, carnet, nombre);
             break;
         case 2:
-            tutorial(tail); // llamamos al archivo .h "Juego"
+            tutorial(tail); // llamamos al archivo .h "creaditosytuto"
             break;
         case 3:
-            Creditos(tail); // llamamos al archivo .h "Juego"
+            Creditos(tail); // llamamos al archivo .h "creaditosytuto"
             break;
         case 4:
             mostrarEstadisticas();
